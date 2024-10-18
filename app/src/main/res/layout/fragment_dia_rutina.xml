@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view_dia_rutina"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Nueva_aplicacion.fragments.DiaRutinaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/text_dia_semana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Día de la Semana"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Agregamos el TextView para mostrar los detalles de las rutinas -->
+        <TextView
+            android:id="@+id/text_rutina_detalles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No hay rutinas asignadas"
+            android:paddingTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

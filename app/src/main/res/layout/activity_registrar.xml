@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Nueva_aplicacion.RegistrarActivity">
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/Nombre_Registrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="77dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/Apellido_Registrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Apellido"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/Nombre_Registrar"
+        app:layout_constraintTop_toBottomOf="@+id/Nombre_Registrar" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="Correo"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/Apellido_Registrar"
+        app:layout_constraintTop_toBottomOf="@+id/Apellido_Registrar" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/Contrasenia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/Email"
+        app:layout_constraintTop_toBottomOf="@+id/Email" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/Fecha_nacimiento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="1dp"
+        android:ems="10"
+        android:hint="Fecha de nacimiento"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/Contrasenia"
+        app:layout_constraintTop_toBottomOf="@+id/Contrasenia" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/Altura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:hint="Altura"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/Fecha_nacimiento"
+        app:layout_constraintTop_toBottomOf="@+id/Fecha_nacimiento" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Registrar"
+        app:layout_constraintEnd_toEndOf="@+id/Altura"
+        app:layout_constraintStart_toStartOf="@+id/Altura"
+        app:layout_constraintTop_toBottomOf="@+id/Altura" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

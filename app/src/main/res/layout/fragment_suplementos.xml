@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+    <EditText
+        android:id="@+id/edit_nombre_suplemento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del suplemento"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edit_cantidad_suplemento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btn_agregar_suplemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Suplemento"
+        android:layout_marginTop="8dp" />
+
+    <!-- Historial de suplementos -->
+    <TextView
+        android:id="@+id/text_historial_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Historial de Suplementos"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_historial_suplementos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

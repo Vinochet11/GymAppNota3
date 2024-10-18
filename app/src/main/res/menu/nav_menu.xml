@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Rutina"
+        android:icon="@drawable/rutina_vector"
+        android:title="Rutina"/>
+
+    <item
+        android:id="@+id/Suplementos"
+        android:icon="@drawable/suplemento_vector"
+        android:title="suplementos"/>
+
+    <item
+        android:id="@+id/Calentamiento"
+        android:icon="@drawable/calentamiento_vector"
+        android:title="Calentamiento"/>
+
+    <item
+        android:id="@+id/Recompensa"
+        android:icon="@drawable/recompensa_vector"
+        android:title="Recompensa"/>
+
+    <item
+        android:id="@+id/Perfil"
+        android:icon="@drawable/perfil_vector"
+        android:title="Perfil"/>
+
+</menu>

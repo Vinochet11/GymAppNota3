@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rutina 1"
+            android:textStyle="bold"
+            android:paddingTop="8dp" />
+
+        <EditText
+            android:id="@+id/edit_nombre_rutina1"
+            android:maxLines="1"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Rutina"/>
+
+        <EditText
+            android:id="@+id/edit_series_repeticiones1"
+            android:maxLines="1"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series y Repeticiones"/>
+
+        <EditText
+            android:id="@+id/edit_peso1"
+            android:maxLines="1"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_realizado1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ejercicio Realizado"/>
+
+        <EditText
+            android:id="@+id/edit_nombre_rutina2"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Rutina"/>
+
+        <EditText
+            android:id="@+id/edit_series_repeticiones2"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series y Repeticiones"/>
+
+        <EditText
+            android:id="@+id/edit_peso2"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_realizado2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ejercicio Realizado"/>
+
+        <EditText
+            android:id="@+id/edit_nombre_rutina3"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Rutina"/>
+
+        <EditText
+            android:id="@+id/edit_series_repeticiones3"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series y Repeticiones"/>
+
+        <EditText
+            android:id="@+id/edit_peso3"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_realizado3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ejercicio Realizado"/>
+
+
+        <EditText
+            android:id="@+id/edit_nombre_rutina4"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Rutina"/>
+
+        <EditText
+            android:id="@+id/edit_series_repeticiones4"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series y Repeticiones"/>
+
+        <EditText
+            android:id="@+id/edit_peso4"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_realizado4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ejercicio Realizado"/>
+
+        <EditText
+            android:id="@+id/edit_nombre_rutina5"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Rutina"/>
+
+        <EditText
+            android:id="@+id/edit_series_repeticiones5"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series y Repeticiones"/>
+
+        <EditText
+            android:id="@+id/edit_peso5"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_realizado5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ejercicio Realizado"/>
+
+
+
+    </LinearLayout>
+</ScrollView>
