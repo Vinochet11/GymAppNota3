@@ -6,49 +6,47 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.jose_leon.R
-import com.example.jose_leon.R.layout.activity_first
-import android.app.Application
-import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 
 class FirstActivity : AppCompatActivity() {
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(activity_first)
-        val btnIniciar_sesion= findViewById<AppCompatButton>(R.id.btnIniciar_sesion)
-        val Correo= findViewById<AppCompatEditText>(R.id.Correo)
-        val contrasena= findViewById<AppCompatEditText>(R.id.contrasena)
-        val btnRegistrar=findViewById<AppCompatButton>(R.id.btnRegistrar)
+        setContentView(R.layout.activity_first)
 
+        auth = FirebaseAuth.getInstance()
 
+        val btnIniciarSesion = findViewById<AppCompatButton>(R.id.btnIniciar_sesion)
+        val correo = findViewById<AppCompatEditText>(R.id.Correo)
+        val contrasena = findViewById<AppCompatEditText>(R.id.contrasena)
+        val btnRegistrar = findViewById<AppCompatButton>(R.id.btnRegistrar)
 
-        btnIniciar_sesion.setOnClickListener {
+        btnIniciarSesion.setOnClickListener {
+            val email = correo.text.toString()
+            val password = contrasena.text.toString()
 
-            val correo = Correo.text.toString()
-            val contrasenia = contrasena.text.toString()
-
-
-            if (correo.isNotEmpty() and correo.equals("c1")){
-                Log.i("JoseLeon","Boton pulsado ${correo}")
-                Toast.makeText(this,"Correo: "+correo+ "" + "contrasenia"+contrasenia ,Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,RutinaActivity::class.java)
-                startActivity(intent);
-            }else{
-                Toast.makeText(this,"Falta algun dato",Toast.LENGTH_SHORT).show()
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, RutinaActivity::class.java))
+                        } else {
+                            Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            } else {
+                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
             }
-
-        }
-        btnRegistrar.setOnClickListener{
-
-            val intent = Intent(this,RegistrarActivity::class.java)
-            startActivity(intent);
-
         }
 
-
+        btnRegistrar.setOnClickListener {
+            startActivity(Intent(this, RegistrarActivity::class.java))
+        }
     }
 }

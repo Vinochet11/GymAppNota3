@@ -3,6 +3,7 @@ package com.example.jose_leon.Nueva_aplicacion.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -17,14 +18,15 @@ class RutinaCreadaAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nombre: TextView = view.findViewById(R.id.nombre_calentamiento)
         val imagen: ImageView = view.findViewById(R.id.imagen_calentamiento)
-        val botonEliminar: View = view.findViewById(R.id.boton_eliminar) // Asegúrate de que exista en el XML
+        val checkBox: CheckBox = view.findViewById(R.id.checkbox_calentamiento)
 
         init {
-            // Configura el evento de clic para el botón de eliminación
-            botonEliminar.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onDelete(calentamientos[position])
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        onDelete(calentamientos[position])
+                    }
                 }
             }
         }
@@ -40,6 +42,7 @@ class RutinaCreadaAdapter(
         val ejercicio = calentamientos[position]
         holder.nombre.text = ejercicio.nombre
         holder.imagen.setImageResource(ejercicio.imagenResId)
+        holder.checkBox.isChecked = false
     }
 
     override fun getItemCount(): Int = calentamientos.size

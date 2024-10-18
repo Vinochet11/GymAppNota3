@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jose_leon.Nueva_aplicacion.models.CalentamientoAdapter
 import com.example.jose_leon.Nueva_aplicacion.models.Calentamiento
-import com.example.jose_leon.Nueva_aplicacion.adapters.RutinaCreadaAdapter
+
 import com.example.jose_leon.R
 import com.google.firebase.database.*
 
@@ -29,13 +29,13 @@ class CalentamientoFragment : Fragment() {
 
     // Definimos las listas como variables de clase
     private val calentamientosSuperior = listOf(
-        Calentamiento("Rotación de hombros", R.drawable.calentamiento_vector),
-        Calentamiento("Círculos de muñeca", R.drawable.perfil_vector)
+        Calentamiento("Rotación de hombros", R.mipmap.hombroo),
+        Calentamiento("Círculos de muñeca", R.mipmap.munecaa)
     )
 
     private val calentamientosInferior = listOf(
-        Calentamiento("Elevación de talones", R.drawable.recompensa_vector),
-        Calentamiento("Estiramiento de cuádriceps", R.drawable.suplemento_vector)
+        Calentamiento("Elevación de talones", R.mipmap.taloness),
+        Calentamiento("Estiramiento de cuádriceps", R.mipmap.cuadricepp)
     )
 
     override fun onCreateView(
