@@ -25,8 +25,7 @@ class DiaRutinaFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dia_rutina, container, false)
 
@@ -66,3 +65,4 @@ class DiaRutinaFragment : Fragment() {
         dialog.show(parentFragmentManager, "RutinaDialog")
     }
 }
+

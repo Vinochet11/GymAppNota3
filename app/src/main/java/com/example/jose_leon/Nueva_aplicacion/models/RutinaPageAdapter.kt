@@ -20,4 +20,3 @@ class RutinaPagerAdapter(
         return fragment
     }
 }
-
