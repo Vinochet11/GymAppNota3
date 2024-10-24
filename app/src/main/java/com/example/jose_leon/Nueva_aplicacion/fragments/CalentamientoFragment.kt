@@ -2,7 +2,6 @@ package com.example.jose_leon.Nueva_aplicacion.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jose_leon.Nueva_aplicacion.models.CalentamientoAdapter
 import com.example.jose_leon.Nueva_aplicacion.models.Calentamiento
-
 import com.example.jose_leon.R
-import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 
 class CalentamientoFragment : Fragment() {
 
@@ -25,17 +23,18 @@ class CalentamientoFragment : Fragment() {
     private lateinit var recyclerRutinas: RecyclerView
     private lateinit var tvNoRutina: View
     private val rutinaSeleccionada = mutableListOf<Calentamiento>()
-    private lateinit var database: DatabaseReference
+    private val firestore = FirebaseFirestore.getInstance()
+    private val collectionRef = firestore.collection("calentamientos")
 
     // Definimos las listas como variables de clase
     private val calentamientosSuperior = listOf(
-        Calentamiento("Rotación de hombros", R.mipmap.hombroo),
-        Calentamiento("Círculos de muñeca", R.mipmap.munecaa)
+        Calentamiento("Rotación de hombros", "hombroo"),
+        Calentamiento("Círculos de muñeca", "munecaa")
     )
 
     private val calentamientosInferior = listOf(
-        Calentamiento("Elevación de talones", R.mipmap.taloness),
-        Calentamiento("Estiramiento de cuádriceps", R.mipmap.cuadricepp)
+        Calentamiento("Elevación de talones", "taloness"),
+        Calentamiento("Estiramiento de cuádriceps", "cuadricepp")
     )
 
     override fun onCreateView(
@@ -48,13 +47,12 @@ class CalentamientoFragment : Fragment() {
         tvNoRutina = view.findViewById(R.id.tv_no_rutina)
 
         recyclerRutinas.layoutManager = LinearLayoutManager(requireContext())
-        database = FirebaseDatabase.getInstance().getReference("calentamientos")
 
         btnCrearRutina.setOnClickListener {
             mostrarDialogoCrearRutina()
         }
 
-        cargarRutinasDesdeFirebase()
+        cargarRutinasDesdeFirestore()
 
         return view
     }
@@ -76,7 +74,7 @@ class CalentamientoFragment : Fragment() {
                 val ejercicios =
                     if (position == 0) calentamientosSuperior else calentamientosInferior
                 recyclerEjercicios.adapter = CalentamientoAdapter(ejercicios) { calentamiento ->
-                    guardarCalentamientoEnFirebase(calentamiento)
+                    guardarCalentamientoEnFirestore(calentamiento)
                 }
             }
 
@@ -90,54 +88,48 @@ class CalentamientoFragment : Fragment() {
             .show()
     }
 
-    private fun guardarCalentamientoEnFirebase(calentamiento: Calentamiento) {
-        val ref = database.push()
-        ref.setValue(calentamiento)
+    private fun guardarCalentamientoEnFirestore(calentamiento: Calentamiento) {
+        collectionRef.add(calentamiento)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Calentamiento guardado", Toast.LENGTH_SHORT)
                     .show()
-                cargarRutinasDesdeFirebase()
+                cargarRutinasDesdeFirestore()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun eliminarCalentamientoDeFirebase(calentamiento: Calentamiento) {
-        database.orderByChild("nombre").equalTo(calentamiento.nombre)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (calentamientoSnapshot in snapshot.children) {
-                        calentamientoSnapshot.ref.removeValue()
-                    }
-                    Toast.makeText(requireContext(), "Calentamiento eliminado", Toast.LENGTH_SHORT)
-                        .show()
-                    cargarRutinasDesdeFirebase() // Actualizamos la lista
+    private fun eliminarCalentamientoDeFirestore(calentamiento: Calentamiento) {
+        collectionRef.whereEqualTo("nombre", calentamiento.nombre)
+            .whereEqualTo("imagenResourceName", calentamiento.imagenResourceName)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    document.reference.delete()
                 }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
+                Toast.makeText(requireContext(), "Calentamiento eliminado", Toast.LENGTH_SHORT)
+                    .show()
+                cargarRutinasDesdeFirestore()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
-    private fun cargarRutinasDesdeFirebase() {
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
+    private fun cargarRutinasDesdeFirestore() {
+        collectionRef.get()
+            .addOnSuccessListener { documents ->
                 rutinaSeleccionada.clear()
-                for (calentamientoSnapshot in snapshot.children) {
-                    val calentamiento = calentamientoSnapshot.getValue(Calentamiento::class.java)
-                    calentamiento?.let { rutinaSeleccionada.add(it) }
+                for (document in documents) {
+                    val calentamiento = document.toObject(Calentamiento::class.java)
+                    rutinaSeleccionada.add(calentamiento)
                 }
                 mostrarRutinaCreada()
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_SHORT)
-                    .show()
+            .addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
-        })
     }
 
     private fun mostrarRutinaCreada() {
@@ -148,7 +140,7 @@ class CalentamientoFragment : Fragment() {
             tvNoRutina.visibility = View.GONE
             recyclerRutinas.visibility = View.VISIBLE
             recyclerRutinas.adapter = CalentamientoAdapter(rutinaSeleccionada) { calentamiento ->
-                eliminarCalentamientoDeFirebase(calentamiento) // Correcto callback de eliminación
+                eliminarCalentamientoDeFirestore(calentamiento)
             }
         }
     }

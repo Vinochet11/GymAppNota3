@@ -11,7 +11,7 @@ import com.example.jose_leon.R
 
 class CalentamientoAdapter(
     private val ejercicios: List<Calentamiento>,
-    private val onDelete: (Calentamiento) -> Unit // Cambiado a un solo parámetro
+    private val onDelete: (Calentamiento) -> Unit
 ) : RecyclerView.Adapter<CalentamientoAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -24,7 +24,7 @@ class CalentamientoAdapter(
                 if (isChecked) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                        onDelete(ejercicios[position]) // Callback de eliminación
+                        onDelete(ejercicios[position])
                     }
                 }
             }
@@ -40,11 +40,20 @@ class CalentamientoAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ejercicio = ejercicios[position]
         holder.nombre.text = ejercicio.nombre
-        holder.imagen.setImageResource(ejercicio.imagenResId)
-        holder.checkBox.isChecked = false // Reiniciar estado del CheckBox
+
+        // Obtener el ID del recurso a partir del nombre
+        val resourceId = holder.itemView.context.resources.getIdentifier(
+            ejercicio.imagenResourceName, "mipmap", holder.itemView.context.packageName
+        )
+        if (resourceId != 0) {
+            holder.imagen.setImageResource(resourceId)
+        } else {
+            // Si no se encuentra el recurso, puedes establecer una imagen por defecto o manejar el error
+            holder.imagen.setImageResource(R.mipmap.ic_launcher) // Imagen por defecto
+        }
+
+        holder.checkBox.isChecked = false
     }
 
     override fun getItemCount(): Int = ejercicios.size
 }
-
-

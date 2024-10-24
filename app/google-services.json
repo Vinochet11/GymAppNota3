@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "481969705981",
-    "project_id": "fir-movil-af8cd",
-    "storage_bucket": "fir-movil-af8cd.appspot.com"
+    "project_number": "801280773354",
+    "project_id": "fir-movil1",
+    "storage_bucket": "fir-movil1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:481969705981:android:3f2880752eb1c7f8317f94",
+        "mobilesdk_app_id": "1:801280773354:android:fe78d0adfb1b940c6a1b93",
         "android_client_info": {
           "package_name": "com.example.jose_leon"
         }
@@ -15,26 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDXSmb_AyqVdbPYthHeO8SG4jkqlLVzZLU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:481969705981:android:93de78601994174d317f94",
-        "android_client_info": {
-          "package_name": "com.example.jose_leon.Nueva_aplicacion"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDXSmb_AyqVdbPYthHeO8SG4jkqlLVzZLU"
+          "current_key": "AIzaSyDOwxqg9Zyyx50NCvCED7kSv11oum6AHG0"
         }
       ],
       "services": {

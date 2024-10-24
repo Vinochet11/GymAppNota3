@@ -1,4 +1,5 @@
 //MainActivity
+
 package com.example.jose_leon.Nueva_aplicacion
 
 import android.content.Intent
@@ -10,10 +11,12 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.jose_leon.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class FirstActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private val firestore = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +37,25 @@ class FirstActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, RutinaActivity::class.java))
+                            val userId = auth.currentUser?.uid
+                            if (userId != null) {
+                                firestore.collection("usuarios").document(userId)
+                                    .get()
+                                    .addOnSuccessListener { document ->
+                                        if (document.exists()) {
+                                            val nombre = document.getString("nombre")
+                                            val apellido = document.getString("apellido")
+                                            // Puedes pasar estos datos a la siguiente actividad si lo deseas
+                                            Toast.makeText(this, "Bienvenido $nombre $apellido", Toast.LENGTH_SHORT).show()
+                                            startActivity(Intent(this, RutinaActivity::class.java))
+                                        } else {
+                                            Toast.makeText(this, "Documento no encontrado", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Toast.makeText(this, "Error al obtener datos: ${e.message}", Toast.LENGTH_SHORT).show()
+                                    }
+                            }
                         } else {
                             Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
@@ -50,3 +70,5 @@ class FirstActivity : AppCompatActivity() {
         }
     }
 }
+
+

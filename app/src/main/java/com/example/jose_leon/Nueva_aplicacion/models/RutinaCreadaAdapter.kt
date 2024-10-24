@@ -39,12 +39,21 @@ class RutinaCreadaAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ejercicio = calentamientos[position]
-        holder.nombre.text = ejercicio.nombre
-        holder.imagen.setImageResource(ejercicio.imagenResId)
+        val calentamiento = calentamientos[position]
+        holder.nombre.text = calentamiento.nombre
+
+        // Si usas imágenes de recursos locales:
+        val resourceId = holder.itemView.context.resources.getIdentifier(
+            calentamiento.imagenResourceName, "mipmap", holder.itemView.context.packageName
+        )
+        if (resourceId != 0) {
+            holder.imagen.setImageResource(resourceId)
+        } else {
+            holder.imagen.setImageResource(R.mipmap.ic_launcher) // Imagen por defecto
+        }
+
         holder.checkBox.isChecked = false
     }
 
     override fun getItemCount(): Int = calentamientos.size
 }
-
