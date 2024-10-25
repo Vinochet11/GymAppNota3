@@ -16,10 +16,7 @@ class RutinaViewModel : ViewModel() {
         cargarRutinasDesdeFirestore()
     }
 
-    /**
-     * Guarda una lista de rutinas para un día específico.
-     * Utiliza la clase RutinasPorDia para facilitar la serialización.
-     */
+
     fun guardarRutinas(dia: String, rutinas: List<Rutina>) {
         val rutinasPorDia = RutinasporDia(rutinas)
         Log.d("RutinaViewModel", "Guardando rutinas para el día: $dia")
@@ -35,17 +32,12 @@ class RutinaViewModel : ViewModel() {
             }
     }
 
-    /**
-     * Obtiene las rutinas para un día específico.
-     * Retorna un LiveData que observa los cambios en Firestore.
-     */
+
     fun obtenerRutinas(dia: String): LiveData<List<Rutina>> {
         return _rutinasPorDia.map { it[dia] ?: emptyList() }
     }
 
-    /**
-     * Carga las rutinas desde Firestore y actualiza el LiveData.
-     */
+
     private fun cargarRutinasDesdeFirestore() {
         db.collection("rutinasPorDia").addSnapshotListener { snapshot, e ->
             if (e != null) {

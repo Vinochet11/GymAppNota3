@@ -27,14 +27,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Kilos actuales"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:background="@android:drawable/editbox_background_normal"
+            android:padding="10dp"
+            android:layout_marginTop="4dp" />
 
         <EditText
             android:id="@+id/editPesoMeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Meta de kilos"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:background="@android:drawable/editbox_background_normal"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
 
         <!-- Sección de Masa Muscular -->
         <TextView
@@ -51,14 +57,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masa muscular actual"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:background="@android:drawable/editbox_background_normal"
+            android:padding="10dp"
+            android:layout_marginTop="4dp" />
 
         <EditText
             android:id="@+id/editMasaMuscularMeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Meta de masa muscular"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:background="@android:drawable/editbox_background_normal"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
 
         <!-- Botón para Guardar -->
         <Button
@@ -66,9 +78,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar Perfil"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@android:color/white"
+            android:padding="12dp" />
 
-        <!-- Espacio para futuras recompensas -->
+        <!-- Sección de Recompensas -->
         <TextView
             android:id="@+id/textRecompensas"
             android:layout_width="wrap_content"
@@ -78,7 +93,11 @@
             android:textStyle="bold"
             android:layout_marginTop="32dp" />
 
-        <!-- Aquí se agregará la sección de recompensas en el futuro -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRecompensas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
 </ScrollView>

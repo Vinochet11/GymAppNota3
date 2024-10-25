@@ -56,7 +56,7 @@ class RutinaDialogFragment : DialogFragment() {
             }
         }
 
-        // Rellenar los campos si hay rutinas existentes
+
         rutinasExistentes?.let {
             for (i in it.indices) {
                 if (i < nombreRutinaEditTexts.size) {
@@ -78,7 +78,7 @@ class RutinaDialogFragment : DialogFragment() {
                     val peso = pesoEditTexts[i].text.toString()
                     val realizado = realizadoCheckBoxes[i].isChecked
 
-                    // Verificar si el usuario ingresó datos en este conjunto
+
                     if (nombre.isNotBlank() || series.isNotBlank() || peso.isNotBlank()) {
                         val rutina = Rutina(
                             nombreRutina = nombre,
@@ -98,17 +98,13 @@ class RutinaDialogFragment : DialogFragment() {
         return builder.create()
     }
 
-    /**
-     * Configura el listener para cuando las rutinas sean guardadas.
-     */
+
     fun setOnRutinasSavedListener(listener: (List<Rutina>) -> Unit) {
         onRutinasSaved = listener
     }
 
     companion object {
-        /**
-         * Crea una nueva instancia del diálogo con rutinas existentes (para edición).
-         */
+
         fun newInstance(rutinasExistentes: MutableList<Rutina>?): RutinaDialogFragment {
             val fragment = RutinaDialogFragment()
             val args = Bundle()

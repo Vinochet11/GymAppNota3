@@ -5,5 +5,7 @@ data class UserProfile (
     var kilosActuales:Double=0.0,
     var MetaKilos:Double = 0.0,
     var MasaMuscular:Double = 0.0,
-    var MetaMasaMuscular:Double = 0.0
+    var MetaMasaMuscular:Double = 0.0,
+    var rutinasCompletas:Int=0,
+    var recompensasDesbloquedas:List<String> = listOf()
 )

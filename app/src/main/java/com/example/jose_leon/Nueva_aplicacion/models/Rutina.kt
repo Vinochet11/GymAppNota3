@@ -9,5 +9,5 @@ data class Rutina(
     val seriesRepeticiones: String = "",
     val peso: String = "",
     val realizado: Boolean = false,
-    val imagenUrl: String? = null
+
 ) : Parcelable
