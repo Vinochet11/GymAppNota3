@@ -1,17 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewPerfil"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".Nueva_aplicacion.fragments.PerfilFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragmento de perfil" />
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <!-- Sección de Peso -->
+        <TextView
+            android:id="@+id/textPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Peso (kg)"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/editPesoActual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Kilos actuales"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editPesoMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Meta de kilos"
+            android:inputType="numberDecimal" />
+
+        <!-- Sección de Masa Muscular -->
+        <TextView
+            android:id="@+id/textMasaMuscular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masa Muscular (kg)"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editMasaMuscularActual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masa muscular actual"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editMasaMuscularMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Meta de masa muscular"
+            android:inputType="numberDecimal" />
+
+        <!-- Botón para Guardar -->
+        <Button
+            android:id="@+id/btnGuardarPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar Perfil"
+            android:layout_marginTop="24dp" />
+
+        <!-- Espacio para futuras recompensas -->
+        <TextView
+            android:id="@+id/textRecompensas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recompensas"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+        <!-- Aquí se agregará la sección de recompensas en el futuro -->
+
+    </LinearLayout>
+</ScrollView>

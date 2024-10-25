@@ -1,60 +1,110 @@
 package com.example.jose_leon.Nueva_aplicacion.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.jose_leon.Nueva_aplicacion.models.UserProfile
 import com.example.jose_leon.R
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PerfilFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PerfilFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var editPesoActual: EditText
+    private lateinit var editPesoMeta: EditText
+    private lateinit var editMasaMuscularActual: EditText
+    private lateinit var editMasaMuscularMeta: EditText
+    private lateinit var btnGuardarPerfil: Button
 
+
+    private val db = FirebaseFirestore.getInstance()
+
+
+    private val perfilDocId = "perfil_usuario"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil, container, false)
+        val view = inflater.inflate(R.layout.fragment_perfil, container, false)
+
+        // Inicializar vistas
+        editPesoActual = view.findViewById(R.id.editPesoActual)
+        editPesoMeta = view.findViewById(R.id.editPesoMeta)
+        editMasaMuscularActual = view.findViewById(R.id.editMasaMuscularActual)
+        editMasaMuscularMeta = view.findViewById(R.id.editMasaMuscularMeta)
+        btnGuardarPerfil = view.findViewById(R.id.btnGuardarPerfil)
+
+        // Cargar datos existentes del perfil
+        cargarPerfil()
+
+        // Configurar el botón para guardar perfil
+        btnGuardarPerfil.setOnClickListener {
+            guardarPerfil()
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PerfilFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PerfilFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
+    private fun cargarPerfil() {
+        db.collection("perfiles")
+            .document(perfilDocId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val perfil = document.toObject(UserProfile::class.java)
+                    perfil?.let {
+                        editPesoActual.setText(it.kilosActuales.toString())
+                        editPesoMeta.setText(it.MetaKilos.toString())
+                        editMasaMuscularActual.setText(it.MasaMuscular.toString())
+                        editMasaMuscularMeta.setText(it.MetaMasaMuscular.toString())
+                    }
+                } else {
+                    Log.d("PerfilFragment", "No se encontró el perfil del usuario.")
                 }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("PerfilFragment", "Error al obtener el perfil: ", exception)
+                Toast.makeText(requireContext(), "Error al cargar perfil.", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+    private fun guardarPerfil() {
+        val pesoActual = editPesoActual.text.toString().toDoubleOrNull()
+        val pesoMeta = editPesoMeta.text.toString().toDoubleOrNull()
+        val masaMuscularActual = editMasaMuscularActual.text.toString().toDoubleOrNull()
+        val masaMuscularMeta = editMasaMuscularMeta.text.toString().toDoubleOrNull()
+
+        if (pesoActual == null || pesoMeta == null || masaMuscularActual == null || masaMuscularMeta == null) {
+            Toast.makeText(requireContext(), "Por favor, completa todos los campos correctamente.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val perfil = UserProfile(
+            id = perfilDocId,
+            kilosActuales  = pesoActual,
+            MetaKilos = pesoMeta,
+            MasaMuscular = masaMuscularActual,
+            MetaMasaMuscular = masaMuscularMeta
+        )
+
+        db.collection("perfiles")
+            .document(perfilDocId)
+            .set(perfil)
+            .addOnSuccessListener {
+                Log.d("PerfilFragment", "Perfil guardado exitosamente.")
+                Toast.makeText(requireContext(), "Perfil guardado.", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Log.e("PerfilFragment", "Error al guardar el perfil: ", e)
+                Toast.makeText(requireContext(), "Error al guardar el perfil.", Toast.LENGTH_SHORT).show()
             }
     }
 }
