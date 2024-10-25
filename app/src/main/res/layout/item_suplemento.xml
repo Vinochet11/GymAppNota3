@@ -17,4 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cantidad" />
+
+
+    <Button
+        android:id="@+id/button_eliminar_suplemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:backgroundTint="@color/Azul_fondo"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="8dp" />
 </LinearLayout>
