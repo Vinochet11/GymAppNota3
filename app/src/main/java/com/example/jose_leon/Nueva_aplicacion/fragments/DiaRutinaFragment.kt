@@ -33,6 +33,7 @@ class DiaRutinaFragment : Fragment() {
         textRutinaDetalles = view.findViewById(R.id.text_rutina_detalles)
         textDiaSemana.text = diaSemana
 
+        // Obtener las rutinas para el día actual
         rutinaViewModel.obtenerRutinas(diaSemana).observe(viewLifecycleOwner) { nuevasRutinas ->
             actualizarUI(nuevasRutinas)
         }
@@ -42,7 +43,7 @@ class DiaRutinaFragment : Fragment() {
 
     private fun actualizarUI(rutinas: List<Rutina>) {
         if (rutinas.isNotEmpty()) {
-            val detalles = rutinas.joinToString("\n") { rutina ->
+            val detalles = rutinas.joinToString("\n\n") { rutina ->
                 """
                     Nombre: ${rutina.nombreRutina}
                     Series y repeticiones: ${rutina.seriesRepeticiones}

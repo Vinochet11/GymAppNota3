@@ -42,7 +42,7 @@ class RutinaCreadaAdapter(
         val calentamiento = calentamientos[position]
         holder.nombre.text = calentamiento.nombre
 
-        // Si usas imágenes de recursos locales:
+
         val resourceId = holder.itemView.context.resources.getIdentifier(
             calentamiento.imagenResourceName, "mipmap", holder.itemView.context.packageName
         )
