@@ -43,6 +43,84 @@
 
         </LinearLayout>
 
+
+        <EditText
+            android:id="@+id/edit_nombre_rutina2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Rutina" />
+
+        <EditText
+            android:id="@+id/edit_series_repeticiones2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series y Repeticiones" />
+
+        <EditText
+            android:id="@+id/edit_peso2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso" />
+
+        <CheckBox
+            android:id="@+id/checkbox_realizado2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Realizado" />
+
+
+
+        <EditText
+            android:id="@+id/edit_nombre_rutina3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Rutina" />
+
+        <EditText
+            android:id="@+id/edit_series_repeticiones3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series y Repeticiones" />
+
+        <EditText
+            android:id="@+id/edit_peso3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso" />
+
+        <CheckBox
+            android:id="@+id/checkbox_realizado3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Realizado" />
+
+
+        <EditText
+            android:id="@+id/edit_nombre_rutina4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Rutina" />
+
+        <EditText
+            android:id="@+id/edit_series_repeticiones4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Series y Repeticiones" />
+
+        <EditText
+            android:id="@+id/edit_peso4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso" />
+
+        <CheckBox
+            android:id="@+id/checkbox_realizado4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Realizado" />
+
+
+
         <!-- Repite para rutina2, rutina3, etc., cambiando los IDs -->
 
     </LinearLayout>
